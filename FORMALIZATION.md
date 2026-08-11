@@ -29,7 +29,6 @@ Accordingly, a green build verifies the formalized layer without `sorry`, but it
 ```bash
 lake build --wfail
 for module in \
-  ZetaSimpleZeros.Combinatorics \
   ZetaSimpleZeros.Constants \
   ZetaSimpleZeros.SpectralScalar \
   ZetaSimpleZeros.Endgame \
@@ -40,4 +39,4 @@ done
 lake env lean ZetaSimpleZeros/Verify.lean
 ```
 
-GitHub CI pins Lean and Mathlib, performs the full kernel build, replays the project modules sequentially with Lean 4.33's environment checker, and rejects `sorryAx`, `Lean.ofReduceBool`, or `Lean.trustCompiler` in the audited theorem dependencies. The two exhaustive concrete checks use `decide +kernel`, not `native_decide`.
+GitHub CI pins Lean and Mathlib and performs the full kernel build. It replays the hand-written proof modules sequentially with Lean 4.33's environment checker, then rejects `sorryAx`, `Lean.ofReduceBool`, or `Lean.trustCompiler` in the audited dependencies of both the hand-written theorems and the computed combinatorial theorems. The two exhaustive concrete checks use `decide +kernel`, not `native_decide`; their generated proof terms are checked by the ordinary Lean kernel build and axiom audit rather than redundantly replayed by `leanchecker`.
