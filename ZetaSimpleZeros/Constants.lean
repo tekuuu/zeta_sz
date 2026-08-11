@@ -15,7 +15,7 @@ noncomputable def HMT : ℝ :=
   (3 : ℝ) / 2 - (1 / Real.sqrt 2) / Real.tan (1 / Real.sqrt 2)
 
 /-- Exact local target as a real number. -/
-def AStar : ℝ := (252921 : ℝ) / 250000
+noncomputable def AStar : ℝ := (252921 : ℝ) / 250000
 
 /-- Exact trace-aware spectral target at block size `272`. -/
 noncomputable def BStar : ℝ :=
@@ -23,7 +23,7 @@ noncomputable def BStar : ℝ :=
     2 * Real.sqrt ((68541591 : ℝ) / 68000000) - 1
 
 /-- Exact global pressure coefficient. -/
-def CStar : ℝ := (266221 : ℝ) / 136000000
+noncomputable def CStar : ℝ := (266221 : ℝ) / 136000000
 
 /-- Exact refined lower-bound expression. -/
 noncomputable def RStar : ℝ :=
