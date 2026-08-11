@@ -23,19 +23,20 @@ The imported analytic framework is credited to Claude/Anthropic, and the inherit
 
 ## Repository layout
 
-- `paper/gpt56_simple_zeros.pdf` — compiled research paper
-- `paper/gpt56_simple_zeros.tex` — complete LaTeX source
+- `paper/PAPER.md` — complete GitHub-readable research manuscript
 - `verification/constants_check.py` — high-precision constants and block-size checks
 - `verification/combinatorics_check.py` — exact rational combinatorial checks
-- `verification/outputs/` — recorded outputs of the two local checkers
+- `verification/outputs/` — recorded outputs of the two checkers
 - `PROVENANCE.md` — detailed authorship/dependency statement
-- `SHA256SUMS.txt` — checksums for core release artifacts
+- `CITATION.cff` — citation metadata
+- `requirements.txt` — local Python dependency for the new checker layer
+
+The compiled PDF and full LaTeX edition were also generated in the associated ChatGPT research session. The GitHub connector used for this upload supports UTF-8 repository writes but not direct arbitrary-binary attachment upload, so the canonical mathematical content is mirrored here in `paper/PAPER.md`; the exact PDF/LaTeX package remains available from the research-session artifact bundle.
 
 ## Reproduction
 
-The two new finite checks require Python 3:
-
 ```bash
+python3 -m pip install -r requirements.txt
 python3 verification/constants_check.py
 python3 verification/combinatorics_check.py
 ```
