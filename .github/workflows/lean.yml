@@ -12,8 +12,23 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           build-args: "--wfail"
-          leanchecker: true
+          leanchecker: false
           nanoda: false
+      - name: Replay project modules with leanchecker
+        shell: bash
+        run: |
+          set -euo pipefail
+          for module in \
+            ZetaSimpleZeros.Combinatorics \
+            ZetaSimpleZeros.Constants \
+            ZetaSimpleZeros.SpectralScalar \
+            ZetaSimpleZeros.Endgame \
+            ZetaSimpleZeros
+          do
+            echo "::group::leanchecker ${module}"
+            lake env leanchecker "${module}"
+            echo "::endgroup::"
+          done
       - name: Audit theorem axioms
         shell: bash
         run: |
