@@ -21,19 +21,55 @@ The listed author of the **new refinement and manuscript** is **GPT-5.6 Pro**, a
 
 The imported analytic framework is credited to Claude/Anthropic, and the inherited Arb interval certificates are credited to Ainta's `zeta-simple-zeros` repository. Those prior contributions are not claimed here.
 
+## Lean formalization
+
+The repository includes a Lean 4 formalization of the new refinement's independent finite and algebraic layer:
+
+- the exact 272-point gap-incidence identity;
+- an exhaustive exact-rational proof that all combined pair coefficients are at most `2`;
+- the exact local-target and pressure constants;
+- the scalar low-energy spectral-envelope calculation;
+- the pointwise and epsilon-form endgame producing the named refined expression.
+
+The project is pinned to Lean `v4.33.0-rc2` and Mathlib commit `51e6992efd06126df61a496bebf8f49482a4e129`. GitHub CI completed a warning-free **8,702-job** build, replayed the hand-written proof modules with Lean's bundled `leanchecker`, and audited the key theorems. Every audited theorem depends only on Lean's standard axioms `propext`, `Classical.choice`, and `Quot.sound`; there is no `sorryAx`, `Lean.ofReduceBool`, or `Lean.trustCompiler` dependency.
+
+This is **not yet an end-to-end formal proof of the zeta theorem**. The inherited analytic estimate, inherited Arb certificates, full Hermitian-matrix reduction, shifted block-pinching theorem for the actual zeta-zero Gram matrices, and connection to the upstream `Zeta23` development remain explicit dependencies. See `FORMALIZATION.md` for the exact trust boundary.
+
 ## Repository layout
 
 - `paper/PAPER.md` — complete GitHub-readable research manuscript
+- `ZetaSimpleZeros/` — Lean proof modules
+- `ZetaSimpleZeros/Verify.lean` — theorem axiom audit
+- `FORMALIZATION.md` — formalization scope and trust boundary
+- `.github/workflows/lean.yml` — reproducible Lean verification workflow
 - `verification/constants_check.py` — high-precision constants and block-size checks
 - `verification/combinatorics_check.py` — exact rational combinatorial checks
-- `verification/outputs/` — recorded outputs of the two checkers
+- `verification/outputs/` — recorded outputs of the two Python checkers
 - `PROVENANCE.md` — detailed authorship/dependency statement
 - `CITATION.cff` — citation metadata
 - `requirements.txt` — local Python dependency for the new checker layer
 
-The compiled PDF and full LaTeX edition were also generated in the associated ChatGPT research session. The GitHub connector used for this upload supports UTF-8 repository writes but not direct arbitrary-binary attachment upload, so the canonical mathematical content is mirrored here in `paper/PAPER.md`; the exact PDF/LaTeX package remains available from the research-session artifact bundle.
+The compiled PDF and full LaTeX edition were also generated in the associated ChatGPT research session. The GitHub connector used for the initial upload supports UTF-8 repository writes but not direct arbitrary-binary attachment upload, so the canonical mathematical content is mirrored here in `paper/PAPER.md`; the exact PDF/LaTeX package remains available from the research-session artifact bundle.
 
 ## Reproduction
+
+### Lean
+
+```bash
+lake build --wfail
+
+for module in \
+  ZetaSimpleZeros.Constants \
+  ZetaSimpleZeros.SpectralScalar \
+  ZetaSimpleZeros.Endgame
+do
+  lake env leanchecker "$module"
+done
+
+lake env lean ZetaSimpleZeros/Verify.lean
+```
+
+### Python checks
 
 ```bash
 python3 -m pip install -r requirements.txt
@@ -45,4 +81,4 @@ The inherited seven-point and three-point Arb certificates are not duplicated he
 
 ## Status
 
-**Unreviewed research draft.** The new deductions have not been independently peer reviewed or formalized in Lean. The inherited Arb certificates were inspected but were not independently rerun in the environment used to prepare this version.
+**AI-generated, unreviewed research draft.** The new finite/algebraic layer is machine-checked in Lean, but the complete analytic theorem is not yet end-to-end formalized or independently peer reviewed. The inherited Arb certificates were inspected but were not independently rerun in the environment used to prepare this version.
