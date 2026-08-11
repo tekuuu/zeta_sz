@@ -1,0 +1,11 @@
+import ZetaSimpleZeros
+
+#print axioms ZetaSimpleZeros.incidenceTotal272
+#print axioms ZetaSimpleZeros.pairBudget272
+#print axioms ZetaSimpleZeros.localTarget272_exact
+#print axioms ZetaSimpleZeros.pressureCoefficient272_exact
+#print axioms ZetaSimpleZeros.lowEnergyEnvelope_scalar
+#print axioms ZetaSimpleZeros.pointwise_refinement
+#print axioms ZetaSimpleZeros.eventual_refinement
+#print axioms ZetaSimpleZeros.refined_zeta_epsilon_form
+#print axioms ZetaSimpleZeros.refined_zeta_pointwise
