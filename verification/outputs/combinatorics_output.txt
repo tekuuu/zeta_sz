@@ -1,0 +1,5 @@
+m=272
+sum nu_j=1596=6(m-6)
+maximum combined pair coefficient=2
+triangle pressure coefficient sum=221/500000=2 epsilon_triangle
+all exact combinatorial assertions passed
