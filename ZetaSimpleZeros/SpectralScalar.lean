@@ -40,6 +40,7 @@ theorem lowEnergyEnvelope_272
   have h := lowEnergyEnvelope_scalar
     (a := (271 : ℝ) / 272) (q := q) (M := M) (D := D)
     (by norm_num) hq hM hMbound hD
-  convert h using 1 <;> ring
+  convert h using 1
+  ring
 
 end ZetaSimpleZeros
