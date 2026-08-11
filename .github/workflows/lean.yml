@@ -12,7 +12,14 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           build-args: "--wfail"
-          nanoda: true
-          nanoda-allow-sorry: false
-      - name: Print axiom dependencies
-        run: lake build ZetaSimpleZeros.Verify --wfail
+          leanchecker: true
+          nanoda: false
+      - name: Audit theorem axioms
+        shell: bash
+        run: |
+          set -o pipefail
+          lake env lean ZetaSimpleZeros/Verify.lean | tee axiom-audit.txt
+          if grep -E 'sorryAx|Lean\.ofReduceBool|Lean\.trustCompiler' axiom-audit.txt; then
+            echo 'Forbidden proof dependency found in axiom audit.' >&2
+            exit 1
+          fi
