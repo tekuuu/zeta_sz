@@ -41,7 +41,8 @@ theorem pointwise_refinement_with_errors
     (S := S) (N := N) (D := D)
     (H := H - e₁) (B := B) (C := C + e₂) (m := m)
     hN hm hB hGlobal hDefect
-  convert h using 1 <;> ring
+  convert h using 1
+  ring
 
 /-- Epsilon-form asymptotic assembly, avoiding hidden use of `o` notation. -/
 theorem eventual_refinement
@@ -70,7 +71,8 @@ theorem eventual_refinement
     (hN n) hm hB hg hd
   have hr' :
       (H - C - 2 * ε) / (1 - B / m) ≤ S n / N n := by
-    convert hr using 1 <;> ring
+    convert hr using 1
+    ring
   exact (le_div_iff₀ (hN n)).1 hr'
 
 /-- The exact refined zeta endgame, conditional on the two asymptotic inputs. -/
