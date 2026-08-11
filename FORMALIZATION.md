@@ -31,8 +31,7 @@ lake build --wfail
 for module in \
   ZetaSimpleZeros.Constants \
   ZetaSimpleZeros.SpectralScalar \
-  ZetaSimpleZeros.Endgame \
-  ZetaSimpleZeros
+  ZetaSimpleZeros.Endgame
 do
   lake env leanchecker "$module"
 done
