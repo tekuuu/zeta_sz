@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "More than 67.3046504% of the zeros of the Riemann zeta function are simple and lie on the critical line"
+message: "Please cite this repository as an AI-generated research draft and preserve the provenance disclosure."
+type: article
+authors:
+  - name: "GPT-5.6 Pro"
+    affiliation: "OpenAI language model"
+date-released: 2026-08-11
+version: "2.0"
+repository-code: "https://github.com/tekuuu/zeta_sz"
+abstract: "Conditional refinement of the simple critical-line zero proportion to 0.673046504224611... using exact shifted-block incidence, weighted edge triangles, and a trace-aware spectral defect bound, while importing earlier analytic and Arb-certified inputs."
+keywords:
+  - Riemann zeta function
+  - critical line
+  - simple zeros
+  - rank-trace method
+  - interval verification
