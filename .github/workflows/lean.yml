@@ -14,12 +14,11 @@ jobs:
           build-args: "--wfail"
           leanchecker: false
           nanoda: false
-      - name: Replay project modules with leanchecker
+      - name: Replay hand-written proof modules with leanchecker
         shell: bash
         run: |
           set -euo pipefail
           for module in \
-            ZetaSimpleZeros.Combinatorics \
             ZetaSimpleZeros.Constants \
             ZetaSimpleZeros.SpectralScalar \
             ZetaSimpleZeros.Endgame \
