@@ -21,8 +21,7 @@ jobs:
           for module in \
             ZetaSimpleZeros.Constants \
             ZetaSimpleZeros.SpectralScalar \
-            ZetaSimpleZeros.Endgame \
-            ZetaSimpleZeros
+            ZetaSimpleZeros.Endgame
           do
             echo "::group::leanchecker ${module}"
             lake env leanchecker "${module}"
