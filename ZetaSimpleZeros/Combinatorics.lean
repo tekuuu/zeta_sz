@@ -16,6 +16,9 @@ arithmetic, compiler-trust axiom, or external oracle is used.
 
 namespace ZetaSimpleZeros
 
+set_option maxHeartbeats 0
+set_option maxRecDepth 100000
+
 /-- The block size selected by the refined argument. -/
 def mStar : ℕ := 272
 
@@ -34,10 +37,8 @@ def incidenceTotal (m : ℕ) : ℕ :=
   ∑ j ∈ Finset.Icc 1 (m - 1), gapIncidence m j
 
 /-- Exact incidence identity for the concrete block size. -/
-set_option maxHeartbeats 0 in
-set_option maxRecDepth 100000 in
 theorem incidenceTotal272 : incidenceTotal mStar = 6 * (mStar - 6) := by
-  decide
+  decide +kernel
 
 /-- Number of consecutive seven-point windows containing a pair `(i,j)`. -/
 def pairOccurrenceCount (m i j : ℕ) : ℕ :=
@@ -85,10 +86,8 @@ def pairBudgetCheck (m : ℕ) : Bool :=
       decide (i < j → combinedPairCoefficient m i j ≤ 2)
 
 /-- Every one of the `272 choose 2` pair coefficients respects the budget `≤ 2`. -/
-set_option maxHeartbeats 0 in
-set_option maxRecDepth 100000 in
 theorem pairBudget272 : pairBudgetCheck mStar = true := by
-  decide
+  decide +kernel
 
 /-- The total weight of the four edge triangles. -/
 def triangleWeightTotalQ : ℚ :=
